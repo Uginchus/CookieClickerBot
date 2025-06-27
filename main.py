@@ -11,6 +11,8 @@ upgrade_4_x, upgrade_4_y = 2330, 600
 upgrade_5_x, upgrade_5_y = 2330, 700
 upgrade_6_x, upgrade_6_y = 2330, 800
 upgrade_7_x, upgrade_7_y = 2330, 900
+upgrade_8_x, upgrade_8_y = 2330, 1000
+upgrade_9_x, upgrade_9_y = 2330, 1100
 
 perk_1_x, perk_1_y = 2130, 130
 
@@ -26,9 +28,11 @@ try:
     while True:
         pyautogui.click(cookie_x, cookie_y)
         click_count += 1
-        time.sleep(0.0001) 
+        time.sleep(0.0001)
         
-        if click_count % 40 == 0:
+        if click_count % 50 == 0:
+            pyautogui.click(upgrade_9_x, upgrade_9_y)
+            pyautogui.click(upgrade_8_x, upgrade_8_y)
             pyautogui.click(upgrade_7_x, upgrade_7_y)
             pyautogui.click(upgrade_6_x, upgrade_6_y)
             pyautogui.click(upgrade_5_x, upgrade_5_y)
@@ -36,7 +40,7 @@ try:
             pyautogui.click(upgrade_3_x, upgrade_3_y)
             pyautogui.click(upgrade_2_x, upgrade_2_y)
             pyautogui.click(upgrade_1_x, upgrade_1_y) 
-        if click_count % 100 == 0:
+        if click_count % 110 == 0:
             pyautogui.click(perk_1_x, perk_1_y)
         
 except pyautogui.FailSafeException:
