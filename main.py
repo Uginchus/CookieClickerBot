@@ -1,20 +1,13 @@
 import pyautogui
 import time
+import pandas as pd
 
 pyautogui.FAILSAFE = True
 
 cookie_x, cookie_y = 390, 520
-upgrade_1_x, upgrade_1_y = 2330, 300
-upgrade_2_x, upgrade_2_y = 2330, 400
-upgrade_3_x, upgrade_3_y = 2330, 500
-upgrade_4_x, upgrade_4_y = 2330, 600
-upgrade_5_x, upgrade_5_y = 2330, 700
-upgrade_6_x, upgrade_6_y = 2330, 800
-upgrade_7_x, upgrade_7_y = 2330, 900
-upgrade_8_x, upgrade_8_y = 2330, 1000
-upgrade_9_x, upgrade_9_y = 2330, 1100
-
 perk_1_x, perk_1_y = 2130, 130
+
+data = pd.read_csv('data/cc.csv')
 
 print("Starting Cookie Clicker bot. To stop:")
 print("1. Rapidly move your mouse to the TOP-LEFT corner of your primary screen.")
@@ -31,15 +24,8 @@ try:
         time.sleep(0.0001)
         
         if click_count % 50 == 0:
-            pyautogui.click(upgrade_9_x, upgrade_9_y)
-            pyautogui.click(upgrade_8_x, upgrade_8_y)
-            pyautogui.click(upgrade_7_x, upgrade_7_y)
-            pyautogui.click(upgrade_6_x, upgrade_6_y)
-            pyautogui.click(upgrade_5_x, upgrade_5_y)
-            pyautogui.click(upgrade_4_x, upgrade_4_y)
-            pyautogui.click(upgrade_3_x, upgrade_3_y)
-            pyautogui.click(upgrade_2_x, upgrade_2_y)
-            pyautogui.click(upgrade_1_x, upgrade_1_y) 
+            for index, row in data.iloc[::-1].iterrows():
+                pyautogui.click(row['x'], row['y'])
         if click_count % 110 == 0:
             pyautogui.click(perk_1_x, perk_1_y)
         
@@ -50,5 +36,4 @@ except KeyboardInterrupt:
 except Exception as e:
     print(f"\nAn unexpected error occurred: {e}")
 finally:
-    print(f"Total clicks performed: {click_count}")
-    print("Bot execution finished.")
+    print(f"Bot execution finished /// Total clicks performed: {click_count}")
